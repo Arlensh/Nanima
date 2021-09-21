@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "523745828497",
+    "project_id": "nanima-fe01d",
+    "storage_bucket": "nanima-fe01d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523745828497:android:b31d1d9feba0380ba82930",
+        "android_client_info": {
+          "package_name": "com.optic.nanima"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "523745828497-j9ccijbfs0dnoajgv8niq1vho00bjg3i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.optic.nanima",
+            "certificate_hash": "e2e37fa8499b3f0f9fdef3699f17a88c56ba6c77"
+          }
+        },
+        {
+          "client_id": "523745828497-uv1r4punb7aatqr8fqdd0hq80la1orko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC35TSbjXVxv27vmOqEFxgOag5flubgXWA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "523745828497-uv1r4punb7aatqr8fqdd0hq80la1orko.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
