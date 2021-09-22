@@ -1,5 +1,4 @@
 # Nanima
-Red Social Gamers
 
 # Foobar
 
