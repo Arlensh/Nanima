@@ -1,8 +1,10 @@
-package com.optic.nanima;
+package com.optic.nanima.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.optic.nanima.R;
 
 public class HomeActivity extends AppCompatActivity {
 

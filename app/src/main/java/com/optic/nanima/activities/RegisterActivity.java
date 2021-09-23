@@ -1,4 +1,4 @@
-package com.optic.nanima;
+package com.optic.nanima.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.optic.nanima.R;
 
 import java.util.HashMap;
 import java.util.Map;
