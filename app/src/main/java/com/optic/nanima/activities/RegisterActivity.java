@@ -3,8 +3,8 @@ package com.optic.nanima.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -14,9 +14,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.optic.nanima.providers.AuthProvider;
 import com.optic.nanima.R;
+import com.optic.nanima.models.User;
+import com.optic.nanima.providers.AuthProvider;
+import com.optic.nanima.providers.UsersProvider;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputEditText mTextInputPassword;
     TextInputEditText mTextInputConfirmPassword;
     Button mButtonRegister;
-
-    FirebaseAuth mAuth;
-    FirebaseFirestore mFirestore;
+    AuthProvider mAuthProvider;
+    UsersProvider mUsersProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +51,8 @@ public class RegisterActivity extends AppCompatActivity {
         mTextInputConfirmPassword = findViewById(R.id.textInputConfirmPassword);
         mButtonRegister = findViewById(R.id.btnRegister);
 
-        // Initialize Firebase Auth ---------
-        mAuth = FirebaseAuth.getInstance();
-        mFirestore = FirebaseFirestore.getInstance();
+        mAuthProvider = new AuthProvider();
+        mUsersProvider = new UsersProvider();
 
         mButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,23 +60,12 @@ public class RegisterActivity extends AppCompatActivity {
                 register();
             }
         });
-
         mCircleImageViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-            currentUser.reload();
-        }
     }
 
     private void register() {
@@ -89,7 +79,8 @@ public class RegisterActivity extends AppCompatActivity {
                 if (password.equals(confirmPassword)) {
                     if (password.length() >= 6) {
                         createUser(username, email, password);
-                    } else {
+                    }
+                    else {
                         Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -107,26 +98,23 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void createUser(final String username, final String email, final String password) {
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        mAuthProvider.register(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    String id = mAuth.getCurrentUser().getUid();
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("email", email);
-                    map.put("username", username);
-                    map.put("password", password);
-                    mFirestore.collection("Users").document(id).set(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    String id = mAuthProvider.getUid();
+
+                    User user = new User();
+                    user.setId(id);
+                    user.setEmail(email);
+                    user.setUsername(username);
+                    user.setPassword(password);
+
+                    mUsersProvider.create(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Toast.makeText(RegisterActivity.this, "El usuario se almaceno correctamente en la base de datos", Toast.LENGTH_SHORT).show();
-
-
-                                //meto esto aqui para que s e se vaya el usuario a la pagina de inicio directamente
-                                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                                startActivity(intent);
-
                             }
                             else {
                                 Toast.makeText(RegisterActivity.this, "No se pudo almacenar el usuario en la base de datos", Toast.LENGTH_SHORT).show();
@@ -140,7 +128,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
-
 
     /*
      * VERIFICAR QUE SEA UN EMAIL VALIDO

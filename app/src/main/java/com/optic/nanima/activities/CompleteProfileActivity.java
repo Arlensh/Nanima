@@ -15,6 +15,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.optic.nanima.R;
+import com.optic.nanima.models.User;
+import com.optic.nanima.providers.AuthProvider;
+import com.optic.nanima.providers.UsersProvider;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,8 +26,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
 
     TextInputEditText mTextInputUsername;
     Button mButtonRegister;
-    FirebaseAuth mAuth;
-    FirebaseFirestore mFirestore;
+    AuthProvider mAuthProvider;
+    UsersProvider mUsersProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,8 @@ public class CompleteProfileActivity extends AppCompatActivity {
         mTextInputUsername = findViewById(R.id.textInputUsername);
         mButtonRegister = findViewById(R.id.btnRegister);
 
-        mAuth = FirebaseAuth.getInstance();
-        mFirestore = FirebaseFirestore.getInstance();
+        mAuthProvider = new AuthProvider();
+        mUsersProvider = new UsersProvider();
 
         mButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +46,6 @@ public class CompleteProfileActivity extends AppCompatActivity {
                 register();
             }
         });
-
     }
 
     private void register() {
@@ -57,10 +59,11 @@ public class CompleteProfileActivity extends AppCompatActivity {
     }
 
     private void updateUser(final String username) {
-        String id = mAuth.getCurrentUser().getUid();
-        Map<String, Object> map = new HashMap<>();
-        map.put("username", username);
-        mFirestore.collection("Users").document(id).update(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+        String id = mAuthProvider.getUid();
+        User user = new User();
+        user.setUsername(username);
+        user.setId(id);
+        mUsersProvider.update(user).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
