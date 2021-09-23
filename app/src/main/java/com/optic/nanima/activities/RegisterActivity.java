@@ -3,6 +3,8 @@ package com.optic.nanima.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.view.View;
@@ -27,6 +29,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import dmax.dialog.SpotsDialog;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -38,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity {
     Button mButtonRegister;
     AuthProvider mAuthProvider;
     UsersProvider mUsersProvider;
+    AlertDialog mDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuthProvider = new AuthProvider();
         mUsersProvider = new UsersProvider();
+
+        mDialog = new SpotsDialog.Builder()
+                .setContext(this)
+                .setMessage(R.string.custom_title)
+                .setCancelable(false).build();
+
 
         mButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +108,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void createUser(final String username, final String email, final String password) {
+        mDialog.show();
         mAuthProvider.register(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -113,8 +124,12 @@ public class RegisterActivity extends AppCompatActivity {
                     mUsersProvider.create(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            mDialog.dismiss();
                             if (task.isSuccessful()) {
-                                Toast.makeText(RegisterActivity.this, "El usuario se almaceno correctamente en la base de datos", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(RegisterActivity.this, "El usuario se almaceno correctamente en la base de datos", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
                             }
                             else {
                                 Toast.makeText(RegisterActivity.this, "No se pudo almacenar el usuario en la base de datos", Toast.LENGTH_SHORT).show();
@@ -123,6 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
                     });
                 }
                 else {
+                    mDialog.dismiss();
                     Toast.makeText(RegisterActivity.this, "No se pudo registrar el usuario", Toast.LENGTH_SHORT).show();
                 }
             }
