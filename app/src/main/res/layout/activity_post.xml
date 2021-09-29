@@ -25,9 +25,8 @@
                 android:textAlignment="center"
                 android:text="CREAR PUBLICACIÓN"
                 android:textColor="@color/colorWhite"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:layout_marginTop="21dp"/>
+                android:textSize="18dp"
+                android:layout_marginTop="23dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -101,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Nombre del juego"
                     android:inputType="text"
-                     />
+                    />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -137,7 +136,6 @@
                     android:hint="Descripcion"
                     android:inputType="textMultiLine"
                     android:maxLines="4"
-                    android:maxLength="500"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -146,7 +144,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textViewCategory"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CATEGORIAS"
@@ -188,7 +185,6 @@
                     >
 
                     <ImageView
-                        android:id="@+id/imageViewPc"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/icon_pc" />
@@ -222,7 +218,6 @@
                     app:cardElevation="10dp">
 
                     <ImageView
-                        android:id="@+id/imageViewPS4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/icon_ps4" />
@@ -256,7 +251,6 @@
                     app:cardElevation="10dp">
 
                     <ImageView
-                        android:id="@+id/imageViewXbox"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/icon_xbox"
@@ -291,7 +285,6 @@
                     app:cardElevation="10dp">
 
                     <ImageView
-                        android:id="@+id/imageViewNintendo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:src="@drawable/icon_nintendo" />
@@ -325,15 +318,5 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:textColor="@color/colorWhite" />
-
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageBack"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_arrow_left"
-        android:layout_margin="15dp"
-        android:scaleType="centerCrop"
-        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
