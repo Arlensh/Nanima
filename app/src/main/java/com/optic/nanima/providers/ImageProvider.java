@@ -9,6 +9,7 @@ import com.optic.nanima.utils.CompressorBitmapImage;
 
 import java.io.File;
 import java.util.Date;
+import java.util.Random;
 
 public class ImageProvider {
 
@@ -20,9 +21,14 @@ public class ImageProvider {
 
     public UploadTask save(Context context, File file) {
         byte[] imageByte = CompressorBitmapImage.getImage(context, file.getPath(), 500, 500);
-        StorageReference storage = mStorage.child(new Date() + ".jpg");
+        StorageReference storage = FirebaseStorage.getInstance().getReference().child(new Date() + ".jpg");
+        mStorage = storage;
         UploadTask task = storage.putBytes(imageByte);
         return task;
+    }
+
+    public StorageReference getStorage() {
+        return mStorage;
     }
 
 }
