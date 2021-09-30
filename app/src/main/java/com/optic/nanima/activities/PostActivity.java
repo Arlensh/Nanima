@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -55,6 +56,8 @@ public class PostActivity extends AppCompatActivity {
     String mTitle = "";
     String mDescription = "";
     AlertDialog mDialog;
+    AlertDialog.Builder mBuilderSelector;
+    CharSequence options[];
     private final int GALLERY_REQUEST_CODE = 1;
     private final int GALLERY_REQUEST_CODE_2 = 2;
 
@@ -71,6 +74,10 @@ public class PostActivity extends AppCompatActivity {
                 .setContext(this)
                 .setMessage("Espere un momento")
                 .setCancelable(false).build();
+
+        mBuilderSelector = new AlertDialog.Builder(this);
+        mBuilderSelector.setTitle("Selecciona una opcion");
+        options = new CharSequence[] {"Imagen de galeria", "Tomar foto"};
 
         mImageViewPost1 = findViewById(R.id.imageViewPost1);
         mImageViewPost2 = findViewById(R.id.imageViewPost2);
@@ -101,14 +108,14 @@ public class PostActivity extends AppCompatActivity {
         mImageViewPost1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openGallery(GALLERY_REQUEST_CODE);
+                selectOptionImage(GALLERY_REQUEST_CODE);
             }
         });
 
         mImageViewPost2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openGallery(GALLERY_REQUEST_CODE_2);
+                selectOptionImage(GALLERY_REQUEST_CODE_2);
             }
         });
 
@@ -143,6 +150,28 @@ public class PostActivity extends AppCompatActivity {
                 mTextViewCategory.setText(mCategory);
             }
         });
+    }
+
+    private void selectOptionImage(final int requestCode) {
+
+        mBuilderSelector.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0) {
+                    openGallery(requestCode);
+                }
+                else if (i == 1){
+                    takePhoto();
+                }
+            }
+        });
+
+        mBuilderSelector.show();
+
+    }
+
+    private void takePhoto() {
+        Toast.makeText(this, "Selecciono tomar foto", Toast.LENGTH_SHORT).show();
     }
 
     private void clickPost() {
