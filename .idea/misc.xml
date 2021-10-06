@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/button_border.xml" value="0.13697916666666668" />
+        <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/circular_view.xml" value="0.13697916666666668" />
+        <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/custom_edittext_chat.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/ic_arrow_back_white.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/ic_cancel.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/ic_chat.xml" value="0.2755208333333333" />
@@ -10,6 +13,7 @@
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/ic_person.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/ic_person_grey.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/ic_person_pin.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/drawable/ic_phone.xml" value="0.13697916666666668" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/layout/action_bar_toolbar.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/layout/activity_chat.xml" value="0.12083333333333333" />
         <entry key="..\:/Users/luciano/AndroidStudioProjects/Nanima/app/src/main/res/layout/activity_complete_profile.xml" value="0.2" />
