@@ -137,22 +137,22 @@ public class MainActivity extends AppCompatActivity {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         mDialog.show();
         mAuthProvider.googleLogin(acct).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    String id = mAuthProvider.getUid();
-                    checkUserExist(id);
-                }
-                else {
-                    mDialog.dismiss();
-                    // If sign in fails, display a message to the user.
-                    Log.w("ERROR", "signInWithCredential:failure", task.getException());
-                    Toast.makeText(MainActivity.this, "No se pudo iniciar sesion con google", Toast.LENGTH_SHORT).show();
-                }
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            String id = mAuthProvider.getUid();
+                            checkUserExist(id);
+                        }
+                        else {
+                            mDialog.dismiss();
+                            // If sign in fails, display a message to the user.
+                            Log.w("ERROR", "signInWithCredential:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "No se pudo iniciar sesion con google", Toast.LENGTH_SHORT).show();
+                        }
 
-                // ...
-            }
-        });
+                        // ...
+                    }
+                });
     }
 
     private void checkUserExist(final String id) {
@@ -197,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 mDialog.dismiss();
                 if (task.isSuccessful()) {
                     Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
                 else {
@@ -207,4 +208,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("CAMPO", "email: " + email);
         Log.d("CAMPO", "password: " + password);
     }
+
+
 }
