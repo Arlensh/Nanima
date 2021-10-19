@@ -28,7 +28,6 @@
                     android:background="@color/colorBlack" />
 
                 <ImageView
-                    android:id="@+id/imageViewCover"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:src="@drawable/cover_image"
@@ -38,7 +37,6 @@
                     android:transitionName="@string/transtionname_picture"/>
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/circleImageProfile"
                     android:layout_width="match_parent"
                     android:layout_height="140dp"
                     android:src="@drawable/ic_person"
@@ -47,25 +45,24 @@
                     app:civ_border_color="@color/colorWhite"
                     app:civ_border_width="5dp"
                     />
-                
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" 
+                    android:orientation="vertical"
                     android:layout_gravity="center|right"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
                     android:gravity="center">
-                    
+
                     <TextView
-                        android:id="@+id/textViewphone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3132424243"
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
                         android:textSize="15dp" />
-                    
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -73,28 +70,27 @@
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
                         android:textSize="13dp" />
-                        
-                    
+
+
                 </LinearLayout>
-                
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" 
+                    android:orientation="vertical"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="5dp"
                     android:gravity="center">
-                    
+
                     <TextView
-                        android:id="@+id/textViewPostNumber"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
                         android:textSize="15dp" />
-                    
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -102,10 +98,10 @@
                         android:textColor="@color/colorWhite"
                         android:textStyle="bold"
                         android:textSize="13dp" />
-                        
-                    
+
+
                 </LinearLayout>
-                
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,7 +110,6 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/textViewUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NOMBRE DEL PERFIL"
@@ -123,11 +118,11 @@
                         android:textSize="20dp" />
 
                     <TextView
-                        android:id="@+id/textViewEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="correo@algo.com"
                         android:textColor="@color/colorDarkBlue"
+                        android:textStyle="bold"
                         android:layout_marginTop="7dp"
                         android:textSize="15dp" />
                 </LinearLayout>
@@ -162,39 +157,23 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
-    
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_marginTop="20dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textViewPostExist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="No hay publicaciones"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="18dp"
-                android:textStyle="italic" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewMyPost"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
-
-        </LinearLayout>
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No hay publicaciones"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="18dp"
+            android:textStyle="italic" />
 
     </androidx.core.widget.NestedScrollView>
 
