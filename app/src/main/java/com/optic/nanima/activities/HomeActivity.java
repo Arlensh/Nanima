@@ -19,7 +19,6 @@ public class HomeActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

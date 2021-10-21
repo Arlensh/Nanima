@@ -2,8 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.optic.nanima">
 
-    <uses-feature android:name="android.hardware.camera2"
-        android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,13 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.UserProfileActivity"></activity>
-        <activity android:name=".activities.PostDetailActivity" />
+        <activity android:name=".activities.FiltersActivity"
+            android:parentActivityName=".activities.HomeActivity"/>
+        <activity
+            android:name=".activities.UserProfileActivity"
+            android:parentActivityName=".activities.PostDetailActivity" />
+        <activity
+            android:name=".activities.PostDetailActivity"
+            android:parentActivityName=".activities.HomeActivity" />
         <activity android:name=".activities.EditProfileActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.optic.socialmediagamer"
+            android:authorities="com.optic.nanima"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

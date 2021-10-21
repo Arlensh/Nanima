@@ -15,7 +15,6 @@ import java.io.OutputStream;
 
 /**
  * Created by Optic on 24/01/2018.
- * Transformar un url a archivo
  */
 
 public class FileUtil {

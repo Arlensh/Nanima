@@ -62,6 +62,7 @@ public class PostActivity extends AppCompatActivity {
     String mTitle = "";
     String mDescription = "";
     AlertDialog mDialog;
+
     AlertDialog.Builder mBuilderSelector;
     CharSequence options[];
     private final int GALLERY_REQUEST_CODE = 1;
@@ -136,7 +137,7 @@ public class PostActivity extends AppCompatActivity {
                 selectOptionImage(2);
             }
         });
-
+        
         mImageViewPC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,7 +145,7 @@ public class PostActivity extends AppCompatActivity {
                 mTextViewCategory.setText(mCategory);
             }
         });
-
+        
         mImageViewPS4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,7 +153,7 @@ public class PostActivity extends AppCompatActivity {
                 mTextViewCategory.setText(mCategory);
             }
         });
-
+        
         mImageViewXBOX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,7 +161,7 @@ public class PostActivity extends AppCompatActivity {
                 mTextViewCategory.setText(mCategory);
             }
         });
-
+        
         mImageViewNitendo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -220,9 +221,9 @@ public class PostActivity extends AppCompatActivity {
     private File createPhotoFile(int requestCode) throws IOException {
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File photoFile = File.createTempFile(
-                new Date() + "_photo",
-                ".jpg",
-                storageDir
+            new Date() + "_photo",
+            ".jpg",
+            storageDir
         );
         if (requestCode == PHOTO_REQUEST_CODE) {
             mPhotoPath = "file:" + photoFile.getAbsolutePath();
@@ -237,7 +238,7 @@ public class PostActivity extends AppCompatActivity {
 
 
     private void clickPost() {
-
+        
         mTitle = mTextInputTitle.getText().toString();
         mDescription = mTextInputDescription.getText().toString();
         if (!mTitle.isEmpty() && !mDescription.isEmpty() && !mCategory.isEmpty()) {

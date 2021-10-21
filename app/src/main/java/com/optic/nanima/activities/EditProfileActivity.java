@@ -69,7 +69,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     File mImageFile;
     File mImageFile2;
-
+    
     String mUsername = "";
     String mPhone = "";
     String mImageProfile = "";

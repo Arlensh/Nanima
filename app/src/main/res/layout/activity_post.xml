@@ -101,7 +101,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Nombre del juego"
                     android:inputType="text"
-                    />
+                     />
 
             </com.google.android.material.textfield.TextInputLayout>
 
