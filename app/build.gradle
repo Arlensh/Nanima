@@ -43,7 +43,7 @@ dependencies {
 
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
 
-    implementation 'id.zelory:compressor:2.1.0'
+    implementation 'id.zelory:compressor:2.1.1'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.github.smarteist:autoimageslider:1.3.7'
     implementation 'com.github.mancj:MaterialSearchBar:0.8.5'

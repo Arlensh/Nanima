@@ -100,14 +100,16 @@ public class ProfileFragment extends Fragment {
         mPostProvider.getPostByUser(mAuthProvider.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                int numberPost = queryDocumentSnapshots.size();
-                if (numberPost > 0) {
-                    mTextViewPostExist.setText("Publicaciones");
-                    mTextViewPostExist.setTextColor(Color.RED);
-                }
-                else {
-                    mTextViewPostExist.setText("No hay publicaciones");
-                    mTextViewPostExist.setTextColor(Color.GRAY);
+                if (queryDocumentSnapshots != null) {
+                    int numberPost = queryDocumentSnapshots.size();
+                    if (numberPost > 0) {
+                        mTextViewPostExist.setText("Publicaciones");
+                        mTextViewPostExist.setTextColor(Color.RED);
+                    }
+                    else {
+                        mTextViewPostExist.setText("No hay publicaciones");
+                        mTextViewPostExist.setTextColor(Color.GRAY);
+                    }
                 }
             }
         });
