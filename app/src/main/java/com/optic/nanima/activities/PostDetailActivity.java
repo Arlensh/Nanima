@@ -142,13 +142,15 @@ public class PostDetailActivity extends AppCompatActivity {
     private void getNumberLikes() {
         mLikesProvider.getLikesByPost(mExtraPostId).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
-                int numberLikes = queryDocumentSnapshots.size();
-                if (numberLikes == 1) {
-                    mTextViewLikes.setText(numberLikes + " Me gusta");
-                }
-                else {
-                    mTextViewLikes.setText(numberLikes + " Me gustas");
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                if (queryDocumentSnapshots != null) {
+                    int numberLikes = queryDocumentSnapshots.size();
+                    if (numberLikes <= 1) {
+                        mTextViewLikes.setText(numberLikes + " Me gusta");
+                    }
+                    else {
+                        mTextViewLikes.setText(numberLikes + " Me gustas");
+                    }
                 }
             }
         });
