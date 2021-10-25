@@ -2,6 +2,7 @@ package com.optic.nanima.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -107,7 +108,12 @@ public class PostsAdapter extends FirestoreRecyclerAdapter<Post, PostsAdapter.Vi
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (queryDocumentSnapshots != null) {
                     int numberLikes = queryDocumentSnapshots.size();
-                    holder.textViewLikes.setText(String.valueOf(numberLikes) + " Me gustas");
+                    if (numberLikes <= 1) {
+                        holder.textViewLikes.setText(String.valueOf(numberLikes) + " Me gusta");
+                    }
+                    else {
+                        holder.textViewLikes.setText(String.valueOf(numberLikes) + " Me gustas");
+                    }
                 }
             }
         });

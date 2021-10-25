@@ -1,10 +1,10 @@
 package com.optic.nanima.providers;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.optic.nanima.models.Comment;
+        import com.google.android.gms.tasks.Task;
+        import com.google.firebase.firestore.CollectionReference;
+        import com.google.firebase.firestore.FirebaseFirestore;
+        import com.google.firebase.firestore.Query;
+        import com.optic.nanima.models.Comment;
 
 public class CommentsProvider {
 
@@ -19,7 +19,9 @@ public class CommentsProvider {
     }
 
     public Query getCommentsByPost(String idPost) {
-        return mCollection.whereEqualTo("idPost", idPost).orderBy("timestamp", Query.Direction.ASCENDING);
+        //return mCollection.whereEqualTo("idPost", idPost).orderBy("timestamp", Query.Direction.ASCENDING);
+        //return mCollection.whereEqualTo("idPost", idPost);
+        return mCollection.whereEqualTo("idPost", idPost).orderBy("timestamp", Query.Direction.DESCENDING);
     }
 
 
