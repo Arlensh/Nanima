@@ -29,6 +29,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.nanima.R;
@@ -46,6 +47,7 @@ import com.optic.nanima.providers.PostProvider;
 import com.optic.nanima.providers.TokenProvider;
 import com.optic.nanima.providers.UsersProvider;
 import com.optic.nanima.utils.RelativeTime;
+import com.optic.nanima.utils.ViewedMessageHelper;
 import com.smarteist.autoimageslider.IndicatorAnimations;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -67,7 +69,7 @@ public class PostDetailActivity extends AppCompatActivity {
     SliderView mSliderView;
     SliderAdapter mSliderAdapter;
     List<SliderItem> mSliderItems = new ArrayList<>();
-
+    
     PostProvider mPostProvider;
     UsersProvider mUsersProvider;
     CommentsProvider mCommentsProvider;
@@ -95,6 +97,8 @@ public class PostDetailActivity extends AppCompatActivity {
     Toolbar mToolbar;
 
     String mIdUser = "";
+
+    ListenerRegistration mListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +157,7 @@ public class PostDetailActivity extends AppCompatActivity {
     }
 
     private void getNumberLikes() {
-        mLikesProvider.getLikesByPost(mExtraPostId).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        mListener = mLikesProvider.getLikesByPost(mExtraPostId).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (queryDocumentSnapshots != null) {
@@ -182,12 +186,27 @@ public class PostDetailActivity extends AppCompatActivity {
         mAdapter = new CommentAdapter(options, PostDetailActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.startListening();
+        ViewedMessageHelper.updateOnline(true, PostDetailActivity.this);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         mAdapter.stopListening();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ViewedMessageHelper.updateOnline(false, PostDetailActivity.this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mListener != null) {
+            mListener.remove();
+        }
     }
 
     private void showDialogComment() {
@@ -199,15 +218,15 @@ public class PostDetailActivity extends AppCompatActivity {
         editText.setHint("Texto");
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
         );
         params.setMargins(36, 0, 36, 36);
         editText.setLayoutParams(params);
         RelativeLayout container = new RelativeLayout(PostDetailActivity.this);
         RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.MATCH_PARENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT
+            RelativeLayout.LayoutParams.MATCH_PARENT,
+            RelativeLayout.LayoutParams.WRAP_CONTENT
         );
         container.setLayoutParams(relativeParams);
         container.addView(editText);

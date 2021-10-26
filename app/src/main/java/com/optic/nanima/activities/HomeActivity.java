@@ -16,6 +16,8 @@ import com.optic.nanima.fragments.HomeFragment;
 import com.optic.nanima.fragments.ProfileFragment;
 import com.optic.nanima.providers.AuthProvider;
 import com.optic.nanima.providers.TokenProvider;
+import com.optic.nanima.providers.UsersProvider;
+import com.optic.nanima.utils.ViewedMessageHelper;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -23,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
 
     TokenProvider mTokenProvider;
     AuthProvider mAuthProvider;
+    UsersProvider mUsersProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,8 +37,22 @@ public class HomeActivity extends AppCompatActivity {
 
         mTokenProvider = new TokenProvider();
         mAuthProvider = new AuthProvider();
+        mUsersProvider = new UsersProvider();
+
         openFragment(new HomeFragment());
         createToken();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ViewedMessageHelper.updateOnline(true, HomeActivity.this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ViewedMessageHelper.updateOnline(false, HomeActivity.this);
     }
 
     public void openFragment(Fragment fragment) {
@@ -44,7 +61,6 @@ public class HomeActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
 
     BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {

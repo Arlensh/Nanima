@@ -32,6 +32,7 @@ import com.optic.nanima.providers.AuthProvider;
 import com.optic.nanima.providers.ImageProvider;
 import com.optic.nanima.providers.UsersProvider;
 import com.optic.nanima.utils.FileUtil;
+import com.optic.nanima.utils.ViewedMessageHelper;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -427,6 +428,18 @@ public class EditProfileActivity extends AppCompatActivity {
             mPhotoFile2 = new File(mAbsolutePhotoPath2);
             Picasso.with(EditProfileActivity.this).load(mPhotoPath2).into(mImageViewCover);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ViewedMessageHelper.updateOnline(true, EditProfileActivity.this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ViewedMessageHelper.updateOnline(false, EditProfileActivity.this);
     }
 
 }

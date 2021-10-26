@@ -31,6 +31,7 @@ import com.optic.nanima.providers.AuthProvider;
 import com.optic.nanima.providers.ImageProvider;
 import com.optic.nanima.providers.PostProvider;
 import com.optic.nanima.utils.FileUtil;
+import com.optic.nanima.utils.ViewedMessageHelper;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -137,7 +138,7 @@ public class PostActivity extends AppCompatActivity {
                 selectOptionImage(2);
             }
         });
-
+        
         mImageViewPC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +146,7 @@ public class PostActivity extends AppCompatActivity {
                 mTextViewCategory.setText(mCategory);
             }
         });
-
+        
         mImageViewPS4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -153,7 +154,7 @@ public class PostActivity extends AppCompatActivity {
                 mTextViewCategory.setText(mCategory);
             }
         });
-
+        
         mImageViewXBOX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,7 +162,7 @@ public class PostActivity extends AppCompatActivity {
                 mTextViewCategory.setText(mCategory);
             }
         });
-
+        
         mImageViewNitendo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -221,9 +222,9 @@ public class PostActivity extends AppCompatActivity {
     private File createPhotoFile(int requestCode) throws IOException {
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File photoFile = File.createTempFile(
-                new Date() + "_photo",
-                ".jpg",
-                storageDir
+            new Date() + "_photo",
+            ".jpg",
+            storageDir
         );
         if (requestCode == PHOTO_REQUEST_CODE) {
             mPhotoPath = "file:" + photoFile.getAbsolutePath();
@@ -238,7 +239,7 @@ public class PostActivity extends AppCompatActivity {
 
 
     private void clickPost() {
-
+        
         mTitle = mTextInputTitle.getText().toString();
         mDescription = mTextInputDescription.getText().toString();
         if (!mTitle.isEmpty() && !mDescription.isEmpty() && !mCategory.isEmpty()) {
@@ -389,5 +390,17 @@ public class PostActivity extends AppCompatActivity {
             mPhotoFile2 = new File(mAbsolutePhotoPath2);
             Picasso.with(PostActivity.this).load(mPhotoPath2).into(mImageViewPost2);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ViewedMessageHelper.updateOnline(true, PostActivity.this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ViewedMessageHelper.updateOnline(false, PostActivity.this);
     }
 }

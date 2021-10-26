@@ -1,6 +1,7 @@
 package com.optic.nanima.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.optic.nanima.R;
+import com.optic.nanima.activities.ChatActivity;
 import com.optic.nanima.models.Chat;
 import com.optic.nanima.providers.AuthProvider;
 import com.optic.nanima.providers.UsersProvider;
@@ -35,7 +37,7 @@ public class ChatsAdapter extends FirestoreRecyclerAdapter<Chat, ChatsAdapter.Vi
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull Chat chat) {
+    protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull final Chat chat) {
 
         DocumentSnapshot document = getSnapshots().getSnapshot(position);
         final String chatId = document.getId();
@@ -46,6 +48,21 @@ public class ChatsAdapter extends FirestoreRecyclerAdapter<Chat, ChatsAdapter.Vi
             getUserInfo(chat.getIdUser1(), holder);
         }
 
+        holder.viewHolder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToChatActivity(chatId, chat.getIdUser1(), chat.getIdUser2());
+            }
+        });
+
+    }
+
+    private void goToChatActivity(String chatId, String idUser1, String idUser2) {
+        Intent intent = new Intent(context, ChatActivity.class);
+        intent.putExtra("idChat", chatId);
+        intent.putExtra("idUser1", idUser1);
+        intent.putExtra("idUser2", idUser2);
+        context.startActivity(intent);
     }
 
     private void getUserInfo(String idUser, final ViewHolder holder) {

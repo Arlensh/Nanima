@@ -19,6 +19,7 @@ import com.optic.nanima.adapters.PostsAdapter;
 import com.optic.nanima.models.Post;
 import com.optic.nanima.providers.AuthProvider;
 import com.optic.nanima.providers.PostProvider;
+import com.optic.nanima.utils.ViewedMessageHelper;
 
 public class FiltersActivity extends AppCompatActivity {
 
@@ -65,12 +66,20 @@ public class FiltersActivity extends AppCompatActivity {
         mPostsAdapter = new PostsAdapter(options, FiltersActivity.this, mTextViewNumberFilter);
         mRecyclerView.setAdapter(mPostsAdapter);
         mPostsAdapter.startListening();
+        ViewedMessageHelper.updateOnline(true, FiltersActivity.this);
+
     }
 
     @Override
     public void onStop() {
         super.onStop();
         mPostsAdapter.stopListening();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ViewedMessageHelper.updateOnline(false, FiltersActivity.this);
     }
 
     @Override

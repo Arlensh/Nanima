@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.optic.nanima.R;
@@ -55,6 +56,8 @@ public class ProfileFragment extends Fragment {
     PostProvider mPostProvider;
 
     MyPostsAdapter mAdapter;
+
+    ListenerRegistration mListener;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -97,7 +100,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private void checkIfExistPost() {
-        mPostProvider.getPostByUser(mAuthProvider.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        mListener = mPostProvider.getPostByUser(mAuthProvider.getUid()).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (queryDocumentSnapshots != null) {
@@ -105,8 +108,7 @@ public class ProfileFragment extends Fragment {
                     if (numberPost > 0) {
                         mTextViewPostExist.setText("Publicaciones");
                         mTextViewPostExist.setTextColor(Color.RED);
-                    }
-                    else {
+                    } else {
                         mTextViewPostExist.setText("No hay publicaciones");
                         mTextViewPostExist.setTextColor(Color.GRAY);
                     }
@@ -132,6 +134,14 @@ public class ProfileFragment extends Fragment {
     public void onStop() {
         super.onStop();
         mAdapter.stopListening();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mListener != null) {
+            mListener.remove();
+        }
     }
 
     private void goToEditProfile() {
@@ -164,7 +174,7 @@ public class ProfileFragment extends Fragment {
                     }
                     if (documentSnapshot.contains("username")) {
                         String username = documentSnapshot.getString("username");
-                        mTextViewUsername.setText(username);
+                        mTextViewUsername.setText(username.toUpperCase());
                     }
                     if (documentSnapshot.contains("image_profile")) {
                         String imageProfile = documentSnapshot.getString("image_profile");
