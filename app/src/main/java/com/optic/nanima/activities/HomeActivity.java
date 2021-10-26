@@ -14,10 +14,15 @@ import com.optic.nanima.fragments.ChatsFragment;
 import com.optic.nanima.fragments.FiltersFragment;
 import com.optic.nanima.fragments.HomeFragment;
 import com.optic.nanima.fragments.ProfileFragment;
+import com.optic.nanima.providers.AuthProvider;
+import com.optic.nanima.providers.TokenProvider;
 
 public class HomeActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigation;
+
+    TokenProvider mTokenProvider;
+    AuthProvider mAuthProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +31,11 @@ public class HomeActivity extends AppCompatActivity {
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
+
+        mTokenProvider = new TokenProvider();
+        mAuthProvider = new AuthProvider();
         openFragment(new HomeFragment());
+        createToken();
     }
 
     public void openFragment(Fragment fragment) {
@@ -61,4 +70,8 @@ public class HomeActivity extends AppCompatActivity {
                     return true;
                 }
             };
+
+    private void createToken() {
+        mTokenProvider.create(mAuthProvider.getUid());
+    }
 }
