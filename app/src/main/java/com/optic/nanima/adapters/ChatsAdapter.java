@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.optic.nanima.R;
 import com.optic.nanima.models.Chat;
+import com.optic.nanima.providers.AuthProvider;
 import com.optic.nanima.providers.UsersProvider;
 import com.squareup.picasso.Picasso;
 
@@ -24,11 +25,13 @@ public class ChatsAdapter extends FirestoreRecyclerAdapter<Chat, ChatsAdapter.Vi
 
     Context context;
     UsersProvider mUsersProvider;
+    AuthProvider mAuthProvider;
 
     public ChatsAdapter(FirestoreRecyclerOptions<Chat> options, Context context) {
         super(options);
         this.context = context;
         mUsersProvider = new UsersProvider();
+        mAuthProvider = new AuthProvider();
     }
 
     @Override
@@ -36,7 +39,12 @@ public class ChatsAdapter extends FirestoreRecyclerAdapter<Chat, ChatsAdapter.Vi
 
         DocumentSnapshot document = getSnapshots().getSnapshot(position);
         final String chatId = document.getId();
-        getUserInfo(chatId, holder);
+        if (mAuthProvider.getUid().equals(chat.getIdUser1())) {
+            getUserInfo(chat.getIdUser2(), holder);
+        }
+        else {
+            getUserInfo(chat.getIdUser1(), holder);
+        }
 
     }
 
