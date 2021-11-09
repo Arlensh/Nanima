@@ -1,5 +1,7 @@
 # Nanima
 
+Esto es para modificarlo mas adelante, no se haga caso ajjaajja
+
 # Foobar
 
 Foobar is a Python library for dealing with word pluralization.
