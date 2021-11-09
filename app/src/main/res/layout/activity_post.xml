@@ -49,7 +49,7 @@
                         android:id="@+id/imageViewPost1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/upload_image"
+                        android:src="@drawable/icon_camara_right"
                         android:scaleType="centerCrop"/>
 
                 </androidx.cardview.widget.CardView>
@@ -66,7 +66,7 @@
                         android:id="@+id/imageViewPost2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/upload_image"
+                        android:src="@drawable/icon_camara_left"
                         android:scaleType="centerCrop"/>
 
                 </androidx.cardview.widget.CardView>
@@ -181,23 +181,22 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    app:cardBackgroundColor="@color/colorDarkBlue"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="10dp"
                     >
 
                     <ImageView
-                        android:id="@+id/imageViewPc"
+                        android:id="@+id/imageViewcod"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/icon_pc" />
+                        android:src="@drawable/icon_cod" />
 
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PC"
+                    android:text="COD"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold"
@@ -216,22 +215,21 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    app:cardBackgroundColor="@color/colorDarkBlue"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="10dp">
 
                     <ImageView
-                        android:id="@+id/imageViewPS4"
+                        android:id="@+id/imageViewlol"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/icon_ps4" />
+                        android:src="@drawable/icon_lol" />
 
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PS4"
+                    android:text="LoL"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold"
@@ -250,23 +248,21 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    app:cardBackgroundColor="@color/colorDarkBlue"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="10dp">
 
                     <ImageView
-                        android:id="@+id/imageViewXbox"
+                        android:id="@+id/imageViewfortnite"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/icon_xbox"
-                        android:padding="5dp"/>
+                        android:src="@drawable/icon_fortnite"/>
 
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="XBOX"
+                    android:text="Fortnite"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold"
@@ -285,22 +281,21 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    app:cardBackgroundColor="@color/colorDarkBlue"
                     app:cardCornerRadius="5dp"
                     app:cardElevation="10dp">
 
                     <ImageView
-                        android:id="@+id/imageViewNintendo"
+                        android:id="@+id/imageViewminecraft"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/icon_nintendo" />
+                        android:src="@drawable/icon_minecraft" />
 
                 </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NINTENDO"
+                    android:text="Minecraft"
                     android:textAlignment="center"
                     android:textColor="@color/colorBlack"
                     android:textStyle="bold"

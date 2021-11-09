@@ -19,10 +19,10 @@ import com.optic.nanima.activities.FiltersActivity;
 public class FiltersFragment extends Fragment {
 
     View mView;
-    CardView mCardViewPS4;
-    CardView mCardViewXBOX;
-    CardView mCardViewNINTENDO;
-    CardView mCardViewPC;
+    CardView mCardViewlol;
+    CardView mCardViewfortnite;
+    CardView mCardViewminecraft;
+    CardView mCardViewcod;
 
     public FiltersFragment() {
         // Required empty public constructor
@@ -34,36 +34,36 @@ public class FiltersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_filters, container, false);
-        mCardViewPS4 = mView.findViewById(R.id.cardViewPs4);
-        mCardViewXBOX = mView.findViewById(R.id.cardViewXBOX);
-        mCardViewNINTENDO = mView.findViewById(R.id.cardViewNINTENDO);
-        mCardViewPC = mView.findViewById(R.id.cardViewPC);
+        mCardViewlol = mView.findViewById(R.id.cardViewlol);
+        mCardViewfortnite = mView.findViewById(R.id.cardViewfortnite);
+        mCardViewminecraft = mView.findViewById(R.id.cardViewminecraft);
+        mCardViewcod = mView.findViewById(R.id.cardViewcod);
 
-        mCardViewPS4.setOnClickListener(new View.OnClickListener() {
+        mCardViewlol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToFilterActivity("PS4");
+                goToFilterActivity("League of legends");
             }
         });
 
-        mCardViewXBOX.setOnClickListener(new View.OnClickListener() {
+        mCardViewfortnite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToFilterActivity("XBOX");
+                goToFilterActivity("Fortnite");
             }
         });
 
-        mCardViewNINTENDO.setOnClickListener(new View.OnClickListener() {
+        mCardViewminecraft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToFilterActivity("NINTENDO");
+                goToFilterActivity("Minecraft");
             }
         });
 
-        mCardViewPC.setOnClickListener(new View.OnClickListener() {
+        mCardViewcod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goToFilterActivity("PC");
+                goToFilterActivity("Call of duty");
             }
         });
 

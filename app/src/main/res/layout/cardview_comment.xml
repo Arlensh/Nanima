@@ -18,7 +18,7 @@
             android:id="@+id/circleImageComment"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:src="@drawable/cover_image" />
+            android:src="@drawable/portada" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"

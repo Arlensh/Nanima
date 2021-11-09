@@ -375,17 +375,17 @@ public class PostDetailActivity extends AppCompatActivity {
                         String category = documentSnapshot.getString("category");
                         mTextViewNameCategory.setText(category);
 
-                        if (category.equals("PS4")) {
-                            mImageViewCategory.setImageResource(R.drawable.icon_ps4);
+                        if (category.equals("League of legends")) {
+                            mImageViewCategory.setImageResource(R.drawable.icon_lol);
                         }
-                        else if (category.equals("XBOX")) {
-                            mImageViewCategory.setImageResource(R.drawable.icon_xbox);
+                        else if (category.equals("Fortnite")) {
+                            mImageViewCategory.setImageResource(R.drawable.icon_fortnite);
                         }
-                        else if (category.equals("PC")) {
-                            mImageViewCategory.setImageResource(R.drawable.icon_pc);
+                        else if (category.equals("Minecraft")) {
+                            mImageViewCategory.setImageResource(R.drawable.icon_minecraft);
                         }
-                        else if (category.equals("NINTENDO")) {
-                            mImageViewCategory.setImageResource(R.drawable.icon_nintendo);
+                        else if (category.equals("Call of duty")) {
+                            mImageViewCategory.setImageResource(R.drawable.icon_cod);
                         }
                     }
                     if (documentSnapshot.contains("idUser")) {

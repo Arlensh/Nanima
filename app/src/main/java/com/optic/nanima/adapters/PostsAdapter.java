@@ -107,7 +107,11 @@ public class PostsAdapter extends FirestoreRecyclerAdapter<Post, PostsAdapter.Vi
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 if (queryDocumentSnapshots != null) {
                     int numberLikes = queryDocumentSnapshots.size();
-                    holder.textViewLikes.setText(String.valueOf(numberLikes) + " Me gustas");
+                    if (numberLikes <= 1) {
+                        holder.textViewLikes.setText(String.valueOf(numberLikes) + " Me gusta");
+                    } else {
+                        holder.textViewLikes.setText(String.valueOf(numberLikes) + " Me gustas");
+                    }
                 }
             }
         });
@@ -117,15 +121,16 @@ public class PostsAdapter extends FirestoreRecyclerAdapter<Post, PostsAdapter.Vi
         mLikesProvider.getLikeByPostAndUser(like.getIdPost(), mAuthProvider.getUid()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                int numberDocuments = queryDocumentSnapshots.size();
-                if (numberDocuments > 0) {
-                    String idLike = queryDocumentSnapshots.getDocuments().get(0).getId();
-                    holder.imageViewLike.setImageResource(R.drawable.icon_like_grey);
-                    mLikesProvider.delete(idLike);
-                }
-                else {
-                    holder.imageViewLike.setImageResource(R.drawable.icon_like_blue);
-                    mLikesProvider.create(like);
+                if (queryDocumentSnapshots != null) {
+                    int numberDocuments = queryDocumentSnapshots.size();
+                    if (numberDocuments > 0) {
+                        String idLike = queryDocumentSnapshots.getDocuments().get(0).getId();
+                        holder.imageViewLike.setImageResource(R.drawable.icon_like_grey);
+                        mLikesProvider.delete(idLike);
+                    } else {
+                        holder.imageViewLike.setImageResource(R.drawable.icon_like_blue);
+                        mLikesProvider.create(like);
+                    }
                 }
             }
         });
@@ -136,12 +141,13 @@ public class PostsAdapter extends FirestoreRecyclerAdapter<Post, PostsAdapter.Vi
         mLikesProvider.getLikeByPostAndUser(idPost, idUser).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                int numberDocuments = queryDocumentSnapshots.size();
-                if (numberDocuments > 0) {
-                    holder.imageViewLike.setImageResource(R.drawable.icon_like_blue);
-                }
-                else {
-                    holder.imageViewLike.setImageResource(R.drawable.icon_like_grey);
+                if (queryDocumentSnapshots != null) {
+                    int numberDocuments = queryDocumentSnapshots.size();
+                    if (numberDocuments > 0) {
+                        holder.imageViewLike.setImageResource(R.drawable.icon_like_blue);
+                    } else {
+                        holder.imageViewLike.setImageResource(R.drawable.icon_like_grey);
+                    }
                 }
             }
         });

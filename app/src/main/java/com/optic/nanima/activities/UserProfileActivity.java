@@ -93,7 +93,8 @@ public class UserProfileActivity extends AppCompatActivity {
         mExtraIdUser = getIntent().getStringExtra("idUser");
 
         if (mAuthProvider.getUid().equals(mExtraIdUser)) {
-            mFabChat.setEnabled(false);
+            //mFabChat.setEnabled(false);
+            mFabChat.hide();
         }
 
         mFabChat.setOnClickListener(new View.OnClickListener() {

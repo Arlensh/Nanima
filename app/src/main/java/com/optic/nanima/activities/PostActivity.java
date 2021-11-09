@@ -53,9 +53,9 @@ public class PostActivity extends AppCompatActivity {
     AuthProvider mAuthProvider;
     TextInputEditText mTextInputTitle;
     TextInputEditText mTextInputDescription;
-    ImageView mImageViewPC;
-    ImageView mImageViewPS4;
-    ImageView mImageViewXBOX;
+    ImageView mImageViewcod;
+    ImageView mImageViewlol;
+    ImageView mImageViewfortnite;
     ImageView mImageViewNitendo;
     CircleImageView mCircleImageBack;
     TextView mTextViewCategory;
@@ -104,10 +104,10 @@ public class PostActivity extends AppCompatActivity {
         mButtonPost = findViewById(R.id.btnPost);
         mTextInputTitle = findViewById(R.id.textInputVideoGame);
         mTextInputDescription = findViewById(R.id.textInputDescription);
-        mImageViewPC = findViewById(R.id.imageViewPc);
-        mImageViewPS4 = findViewById(R.id.imageViewPS4);
-        mImageViewXBOX = findViewById(R.id.imageViewXbox);
-        mImageViewNitendo = findViewById(R.id.imageViewNintendo);
+        mImageViewcod = findViewById(R.id.imageViewcod);
+        mImageViewlol = findViewById(R.id.imageViewlol);
+        mImageViewfortnite = findViewById(R.id.imageViewfortnite);
+        mImageViewNitendo = findViewById(R.id.imageViewminecraft);
         mTextViewCategory = findViewById(R.id.textViewCategory);
         mCircleImageBack = findViewById(R.id.circleImageBack);
 
@@ -139,26 +139,26 @@ public class PostActivity extends AppCompatActivity {
             }
         });
         
-        mImageViewPC.setOnClickListener(new View.OnClickListener() {
+        mImageViewcod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCategory = "PC";
+                mCategory = "Call of duty";
                 mTextViewCategory.setText(mCategory);
             }
         });
         
-        mImageViewPS4.setOnClickListener(new View.OnClickListener() {
+        mImageViewlol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCategory = "PS4";
+                mCategory = "League of legends";
                 mTextViewCategory.setText(mCategory);
             }
         });
         
-        mImageViewXBOX.setOnClickListener(new View.OnClickListener() {
+        mImageViewfortnite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCategory = "XBOX";
+                mCategory = "Fortnite";
                 mTextViewCategory.setText(mCategory);
             }
         });
@@ -166,7 +166,7 @@ public class PostActivity extends AppCompatActivity {
         mImageViewNitendo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCategory = "NINTENDO";
+                mCategory = "Minecraft";
                 mTextViewCategory.setText(mCategory);
             }
         });
@@ -330,8 +330,8 @@ public class PostActivity extends AppCompatActivity {
         mTextInputTitle.setText("");
         mTextInputDescription.setText("");
         mTextViewCategory.setText("CATEGORIAS");
-        mImageViewPost1.setImageResource(R.drawable.upload_image);
-        mImageViewPost2.setImageResource(R.drawable.upload_image);
+        mImageViewPost1.setImageResource(R.drawable.icon_camara_right);
+        mImageViewPost2.setImageResource(R.drawable.icon_camara_left);
         mTitle = "";
         mDescription = "";
         mCategory = "";
